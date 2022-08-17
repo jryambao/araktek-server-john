@@ -7,11 +7,12 @@ use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\CartController;
+use App\Http\Controllers\API\StoreController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\Api\FrontendController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,10 +32,10 @@ Route::post('login', [AuthController::class, 'login']);
 
 // JOHN DATA
 
-Route::get('getCategory', [FrontendController::class,'category']);
-Route::get('fetchproducts/{slug}', [FrontendController::class, 'product']);
-Route::get('viewproductdetail/{slug}/{product_slug}', [FrontendController::class, 'viewproduct']);
-Route::get('allproduct', [ProductController::class, 'allproduct']);
+Route::get('getCategory', [StoreController::class,'category']);
+Route::get('fetchproducts/{slug}', [StoreController::class, 'product']);
+Route::get('viewproductdetail/{slug}/{product_slug}', [StoreController::class, 'viewproduct']);
+Route::get('allproduct', [StoreController::class, 'index']);
 Route::post('addcart', [CartController::class, 'addtocart']);
 
 Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function(){
