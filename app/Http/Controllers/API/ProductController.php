@@ -17,6 +17,14 @@ class ProductController extends Controller
         ]); 
     }
 
+    public function allproduct() {
+        $product = Product::all();
+        return response()->json([
+            'status' => 200,
+            'product' => $product
+        ]); 
+    }
+
     public function edit($id) {
         $product = Product::find($id);
         if ($product) {

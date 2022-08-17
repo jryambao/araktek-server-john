@@ -79,10 +79,10 @@ class FrontendController extends Controller
         }
     }
     public function index() {
-        $products = Product::all();
+        $product = Product::all();
         return response()->json([
             'status' => 200,
-            'products' => $products
+            'product' => $product
         ]); 
     }
     }

@@ -34,7 +34,7 @@ Route::post('login', [AuthController::class, 'login']);
 Route::get('getCategory', [FrontendController::class,'category']);
 Route::get('fetchproducts/{slug}', [FrontendController::class, 'product']);
 Route::get('viewproductdetail/{slug}/{product_slug}', [FrontendController::class, 'viewproduct']);
-Route::get('allproduct', [FrontendController::class, 'index']);
+Route::get('allproduct', [ProductController::class, 'allproduct']);
 Route::post('addcart', [CartController::class, 'addtocart']);
 
 Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function(){
