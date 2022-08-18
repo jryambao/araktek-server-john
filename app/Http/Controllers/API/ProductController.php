@@ -102,7 +102,6 @@ class ProductController extends Controller
             'selling_price' => 'required|max:20',
             'original_price' => 'required|max:20',
             'qty' => 'required|max:20',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         if ($validator -> fails()) {
@@ -132,17 +131,25 @@ class ProductController extends Controller
                 $product->qty = $request->input('qty');
 
                 if ($request->hasFile('image')) {
+
+                    $path = $product->image;
+
+                    if(File::exists($path)) {
+                        File::delete($path);
+                    }
+
                     $file = $request->file('image');
                     $extension = $file->getClientOriginalExtension();
                     $filename = time() .'.'.$extension;
                     $file->move('uploads/product/', $filename);
                     $product->image = 'uploads/product/'.$filename;
+
                 }
 
                 $product->featured = $request->input('featured') == true ? '1' : '0';
                 $product->popular = $request->input('popular') == true ? '1' : '0';
                 $product->status = $request->input('status') == true ? '1' : '0';
-                $product->save();
+                $product->update();
 
                 return response()->json([
                     'status' => 200,
