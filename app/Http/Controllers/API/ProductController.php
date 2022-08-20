@@ -146,9 +146,9 @@ class ProductController extends Controller
 
                 }
 
-                $product->featured = $request->input('featured') == true ? '1' : '0';
-                $product->popular = $request->input('popular') == true ? '1' : '0';
-                $product->status = $request->input('status') == true ? '1' : '0';
+                $product->featured = $request->input('featured');
+                $product->popular = $request->input('popular');
+                $product->status = $request->input('status');
                 $product->update();
 
                 return response()->json([
