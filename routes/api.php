@@ -7,7 +7,7 @@ use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\ProductDetailsController;
 use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\CartController;
-use App\Http\Controllers\API\StoreController;
+use App\Http\Controllers\API\FrontendController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,10 +32,10 @@ Route::post('login', [AuthController::class, 'login']);
 
 // JOHN DATA
 
-Route::get('getCategory', [StoreController::class,'category']);
-Route::get('fetchproducts/{slug}', [StoreController::class, 'product']);
+Route::get('getCategory', [FrontendController::class,'category']);
+Route::get('fetchproducts/{slug}', [FrontendController::class, 'product']);
 Route::get('viewproductdetail/{slug}/{product_slug}', [StoreController::class, 'viewproduct']);
-Route::get('allproduct', [StoreController::class, 'index']);
+Route::get('allproduct', [FrontendController::class, 'index']);
 Route::post('addcart', [CartController::class, 'addtocart']);
 
 Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function(){
@@ -70,6 +70,7 @@ Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function(){
     //Products
     Route::post('store-product', [ProductController::class, 'store']);
     Route::get('view-product', [ProductController::class, 'index']);
+    Route::get('view-inventory', [ProductController::class, 'index']);
     Route::get('edit-product/{id}', [ProductController::class, 'edit']);
     Route::post('update-product/{id}', [ProductController::class, 'update']);
     Route::delete('delete-product/{id}', [ProductController::class, 'destroy']);

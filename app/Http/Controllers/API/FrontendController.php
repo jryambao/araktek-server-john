@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 
-class StoreController extends Controller
+class FrontendController extends Controller
 {
 
     public function category()
